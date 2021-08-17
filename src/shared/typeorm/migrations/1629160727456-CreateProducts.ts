@@ -18,7 +18,27 @@ export class CreateProducts1629160727456 implements MigrationInterface {
                     generationStrategy: 'uuid',
                     default: 'uuid_generate_v4()'
                 },
-                
+                {
+                    name: 'name',
+                    type: 'varchar'
+                },
+                {
+                    name: 'price',
+                    type: 'decimal',
+                    scale: 2
+                },
+                {
+                    name: 'quantity',
+                    type: 'int'
+                },
+                {
+                    name: 'created_at',
+                    type: 'timestamp with time zone'
+                },
+                {
+                    name: 'updated_at',
+                    type: 'timestamp with time zone'
+                }
             ]
         })) 
 
