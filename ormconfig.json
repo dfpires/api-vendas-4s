@@ -4,5 +4,11 @@
     "port": 54321,
     "username": "postgres",
     "password": "docker",
-    "database": "api-vendas-4s" 
+    "database": "api-vendas",
+    "migrations": [
+        "./src/shared/typeorm/migrations/*.ts"
+    ],
+    "cli": {
+        "migrationsDir" : "./src/shared/typeorm/migrations"
+    } 
 }
