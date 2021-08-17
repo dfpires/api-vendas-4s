@@ -1,0 +1,8 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 54321,
+    "username": "postgres",
+    "password": "docker",
+    "database": "api-vendas-4s" 
+}
