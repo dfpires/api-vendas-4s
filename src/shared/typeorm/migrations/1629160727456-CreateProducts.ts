@@ -1,3 +1,4 @@
+import { query } from "express";
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class CreateProducts1629160727456 implements MigrationInterface {
@@ -45,6 +46,10 @@ export class CreateProducts1629160727456 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+
+        // remove a tabela
+        // chamamos um método síncrono
+        await queryRunner.dropTable('products')
     }
 
 }
