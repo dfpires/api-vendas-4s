@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import AppError from "../../../shared/errors/AppErrors";
 import ProductRepository from "../typeorm/repositories/ProductRepository";
 
 
@@ -17,7 +18,10 @@ class DeleteProductService {
         // busca pelo produto com id
         let product = await productRepository.findOne(id);
         if (!product){
-            
+            throw new AppError(`Produto não existe`)
         }
+        await productRepository.remove(product);
     }
 }
+
+export default DeleteProductService

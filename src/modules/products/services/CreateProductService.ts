@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import AppError from "../../../shared/errors/AppErrors";
 import Product from "../typeorm/entities/Product";
 import ProductRepository from "../typeorm/repositories/ProductRepository";
 
@@ -21,7 +22,8 @@ class CreateProductService {
        let productExist = await productRepository.findByName(name);
        if (productExist){
            // não podemos cadastrar
-           console.log(`Produto já existe no banco de dados`)
+           throw new AppError('Já temos produto com este nome');
+     
             // lançar uma exceção
        }
        // produto não existe
