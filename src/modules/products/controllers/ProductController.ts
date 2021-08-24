@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import CreateProductService from "../services/CreateProductService";
 import DeleteProductService from "../services/DeleteProductService";
+import ListProductService from "../services/ListProductService";
+import ShowProductService from "../services/ShowProductService";
 import Product from "../typeorm/entities/Product";
 
 
@@ -29,6 +31,22 @@ export default class ProductController {
         let deleteProductService = new DeleteProductService()
         await deleteProductService.execute({ id } )
 
-        return response.json([])
+        return response.json([]) // retorna nada
+    }
+    // chama o ListProductService
+    public async index (request: Request, response: Response): Promise<Response>{
+
+        let listProductService = new ListProductService()
+        let products = listProductService.execute();
+        return response.json(products);
+    }
+
+    // chama o ShowProductService
+    public async show (request: Request, response: Response): Promise<Response>{
+        // id virá pela URL da requisção
+        let {id} = request.params
+        let showProductService = new ShowProductService()
+        let product = showProductService.execute({id});
+        return response.json(product);
     }
 }
