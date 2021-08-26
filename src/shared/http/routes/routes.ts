@@ -1,10 +1,13 @@
 
 // importa classe Router da dependência express
 import {Router} from 'express'
+import productRouter from '../../../modules/products/routes/product.routes'
 
 // cria um objeto da classe Router
 
 let routes = Router()
+
+routes.use('/products', productRouter)
 
 // rota GET padrão / 
 // request representa a requisição e response a resposta
