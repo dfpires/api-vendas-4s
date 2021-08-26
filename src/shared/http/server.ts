@@ -7,6 +7,10 @@ let servidor = express();
 
 import routes from './routes/routes'
 
+// servidor suporta converte dados do formulário para json
+servidor.use(express.json())
+
+
 // associa as rotas ao servidor
 servidor.use(routes)
 

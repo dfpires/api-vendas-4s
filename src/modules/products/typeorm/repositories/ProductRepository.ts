@@ -1,7 +1,8 @@
-import { Repository } from "typeorm";
+import { EntityRepository, Repository } from "typeorm";
 import Product from "../entities/Product";
 
 // criar e já exportar a classe
+@EntityRepository(Product)
 export default class ProductRepository extends Repository<Product> {
     
     // exemplo de um método de busca por Nome - algo customizado
