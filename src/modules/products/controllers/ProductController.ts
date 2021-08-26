@@ -38,7 +38,7 @@ export default class ProductController {
     public async index (request: Request, response: Response): Promise<Response>{
 
         let listProductService = new ListProductService()
-        let products = listProductService.execute();
+        let products = await listProductService.execute();
         return response.json(products);
     }
 
@@ -47,7 +47,7 @@ export default class ProductController {
         // id virá pela URL da requisção
         let {id} = request.params
         let showProductService = new ShowProductService()
-        let product = showProductService.execute({id});
+        let product = await showProductService.execute({id});
         return response.json(product);
     }
 
