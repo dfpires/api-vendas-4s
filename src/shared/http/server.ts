@@ -1,6 +1,6 @@
 
 // importa dependência do express
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 // importa a dependência do express para erro
 import 'express-async-errors'
 
@@ -28,6 +28,17 @@ servidor.use(errors())
 // importa e executa a conexão com o banco de dados
 import './../typeorm'
 
+// tratar o erro
+servidor.use(
+    (error:Error, request: Request, response: Response, next: NextFunction) => {
+        if (error instanceof AppError){
+            return response.status(error.statusCode).json({
+                status: 'error',
+                message: error.message
+            })
+        }
+    }
+)
 // 
 // sobe o servidor, que fica escutando e aguardando as requisições
 servidor.listen(3333, () => {
