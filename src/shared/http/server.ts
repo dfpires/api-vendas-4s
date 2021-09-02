@@ -31,12 +31,18 @@ import './../typeorm'
 // tratar o erro
 servidor.use(
     (error:Error, request: Request, response: Response, next: NextFunction) => {
-        if (error instanceof AppError){
+        if (error instanceof AppError){ // este erro vamos tratar
             return response.status(error.statusCode).json({
                 status: 'error',
                 message: error.message
             })
         }
+
+        // erro não está tratado por nós
+        return response.status(500).json({
+            status:'error',
+            message: 'Internal server error'
+        })
     }
 )
 // 
