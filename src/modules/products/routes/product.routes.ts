@@ -25,8 +25,37 @@ celebrate({
 }),
 productController.show)
 
-productRouter.post('/', productController.create)
-productRouter.delete('/:id', productController.delete)
-productRouter.put('/:id', productController.update)
+// trata o erro de exigir corpo da requsição
+productRouter.post('/', 
+celebrate({
+    [Segments.BODY]: {
+        name: Joi.string().required(),
+        price: Joi.number().precision(2).required(),
+        quantity: Joi.number().required()
+    }
+}),
+productController.create)
+
+productRouter.delete('/:id', 
+
+celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    }
+}),
+productController.delete)
+
+productRouter.put('/:id', 
+celebrate({
+    [Segments.PARAMS]: {
+        id: Joi.string().uuid().required()
+    },
+    [Segments.BODY]: {
+        name: Joi.string().required(),
+        price: Joi.number().precision(2).required(),
+        quantity: Joi.number().required()
+    }
+}),
+productController.update)
 
 export default productRouter
