@@ -1,6 +1,14 @@
 
 // importa dependência do express
 import express from 'express';
+// importa a dependência do express para erro
+import 'express-async-errors'
+
+// vamos utilizar dependência celebrate
+import {errors} from 'celebrate'
+// vamos utilizar a classe AppError
+import AppError from '../../shared/errors/AppErrors'
+
 
 // cria um servidor express
 let servidor = express();
@@ -14,9 +22,13 @@ servidor.use(express.json())
 // associa as rotas ao servidor
 servidor.use(routes)
 
+// servidor vai poder tratar erro do cebrate
+servidor.use(errors())
+
 // importa e executa a conexão com o banco de dados
 import './../typeorm'
 
+// 
 // sobe o servidor, que fica escutando e aguardando as requisições
 servidor.listen(3333, () => {
 

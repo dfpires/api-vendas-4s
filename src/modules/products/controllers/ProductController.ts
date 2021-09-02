@@ -60,7 +60,7 @@ export default class ProductController {
 
         let updateService = new UpdateProductService() 
 
-        let product = updateService.execute({id, name, price, quantity})
+        let product = await updateService.execute({id, name, price, quantity})
         
         return response.json(product)
     }
