@@ -24,7 +24,7 @@ class UpdateProductService {
         }
         // produto tem o mesmo nome
         let productSameName = await productRepository.findByName(name)
-        if (!productSameName){
+        if (productSameName){
             throw new AppError('Produto já tem um nome deste')
         }
         // efetivamente atualizar
