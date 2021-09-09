@@ -47,7 +47,9 @@ export class CreateUsers1631146542361 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-    
+          // remove a tabela
+        // chamamos um método síncrono
+        await queryRunner.dropTable('users')
     }
 
 }
