@@ -30,7 +30,4 @@ export default class UserController {
         return response.json(users);
     }
 
-    
-
-   
 }
