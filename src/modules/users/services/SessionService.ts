@@ -16,7 +16,7 @@ interface IResponse {
     token: string
 }
 
-class SessionUserService {
+class SessionService {
     public async execute({email, password}: IRequest): Promise<IResponse> {
         let userRepository = getCustomRepository(UserRepository)
         let user = await userRepository.findByEmail(email)
@@ -44,4 +44,4 @@ class SessionUserService {
     }
 }
 
-export default SessionUserService
+export default SessionService

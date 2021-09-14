@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import CreateUserService from "../services/CreateUserService";
-import SessionUserService from "../services/SessionUserService";
+import SessionService from "../services/SessionService";
 
-export default class SessionUserController {
+export default class SessionController {
     // perceba que nesta classe não existe regra de negócio
     // método para inserir o produto
     public async create(request: Request, response: Response): Promise<Response> {
@@ -10,8 +9,8 @@ export default class SessionUserController {
         // recupera a informação do usuário - corpo da página
         let {email, password} = request.body
         // gerar um token para o usuário
-        let sessionUser = new SessionUserService();
-        let user = await sessionUser.execute({
+        let session = new SessionService();
+        let user = await session.execute({
             email,
             password
         })
