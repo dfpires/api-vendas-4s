@@ -37,7 +37,7 @@ servidor.use(
                 message: error.message
             })
         }
-
+        console.log(error)
         // erro não está tratado por nós
         return response.status(500).json({
             status:'error',

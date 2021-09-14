@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 // vamos utilizar o padrão de projeto Decorator - @
-@Entity('user')
+@Entity('users')
 class User {
     @PrimaryGeneratedColumn('uuid')
     id: string; // uuid -> universally unique identifier 
