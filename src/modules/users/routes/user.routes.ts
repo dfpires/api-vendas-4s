@@ -5,6 +5,7 @@ import UserController from '../controllers/UserController'
 
 // import celebrate
 import {celebrate, Joi, Segments} from 'celebrate'
+import isAuthenticated from '../../../shared/middleware/isAuthenticated'
 
 // cria a rota do produto
 let userRouter = Router()
@@ -14,7 +15,7 @@ let userController = new UserController()
 
 // rota de consulta
 // não tem o que tratar
-userRouter.get('/', userController.index) 
+userRouter.get('/', isAuthenticated, userController.index) 
 
 // trata o erro de exigir corpo da requsição
 userRouter.post('/', 

@@ -5,6 +5,7 @@ import ProductController from '../controllers/ProductController'
 
 // import celebrate
 import {celebrate, Joi, Segments} from 'celebrate'
+import isAuthenticated from '../../../shared/middleware/isAuthenticated'
 
 // cria a rota do produto
 let productRouter = Router()
@@ -14,10 +15,10 @@ let productController = new ProductController()
 
 // rota de consulta
 // não tem o que tratar
-productRouter.get('/', productController.index) 
+productRouter.get('/', isAuthenticated, productController.index) 
 
 // tratar a obrigatoriedade de termos um id
-productRouter.get('/:id', 
+productRouter.get('/:id', isAuthenticated,
 celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
@@ -26,7 +27,7 @@ celebrate({
 productController.show)
 
 // trata o erro de exigir corpo da requsição
-productRouter.post('/', 
+productRouter.post('/', isAuthenticated,
 celebrate({
     [Segments.BODY]: {
         name: Joi.string().required(),
@@ -36,7 +37,7 @@ celebrate({
 }),
 productController.create)
 
-productRouter.delete('/:id', 
+productRouter.delete('/:id', isAuthenticated,
 
 celebrate({
     [Segments.PARAMS]: {
@@ -45,7 +46,7 @@ celebrate({
 }),
 productController.delete)
 
-productRouter.put('/:id', 
+productRouter.put('/:id', isAuthenticated,
 celebrate({
     [Segments.PARAMS]: {
         id: Joi.string().uuid().required()
