@@ -37,6 +37,8 @@ export default class ProductController {
     // chama o ListProductService
     public async index (request: Request, response: Response): Promise<Response>{
 
+        console.log(`ID do usuário quando lista o produto ${request.user.id}`)
+
         let listProductService = new ListProductService()
         let products = await listProductService.execute();
         return response.json(products);

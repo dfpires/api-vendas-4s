@@ -7,7 +7,7 @@ import authConfig from '../../config/auth'
 interface ITokenPayload {
     iat: number,
     exp: number,
-    sub: String
+    sub: string
 }
 
 export default function isAuthenticated(request: Request, response: Response, next: NextFunction): void {
@@ -41,8 +41,13 @@ export default function isAuthenticated(request: Request, response: Response, ne
         // no campo sub, temos o id do usuário, que requemos passar na requisição
         const {sub} = decodedToken as ITokenPayload // agora sim conseguimos pegar apenas o campo sub
 
-        // vamos alterar as informações da requisição - a requisição precisa conter o id do usuário
+        console.log(`ID do usuário ${sub}`)
 
+        // vamos alterar as informações da requisição - a requisição precisa conter o id do usuário, está no 
+       
+        request.user = {
+            id: sub
+        }
 
         return next() // deixa a API ser utilizada -> será consumida
     }
