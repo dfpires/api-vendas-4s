@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import AppError from "../../../shared/errors/AppErrors";
 import User from "../typeorm/entities/User";
 import UserRepository from "../typeorm/repositories/UserRepository";
-import {hash} from 'bcryptjs'
+import {hash, genSalt} from 'bcryptjs'
 
 // criar uma inteface -> tipo de dado
 interface IRequest {
@@ -26,8 +26,8 @@ class CreateUserService {
      
             // lançar uma exceção
        }
-       
-       let hashedPassword = await hash(password, 8)
+       const salt = await genSalt(8) 
+       let hashedPassword = await hash(password, salt)
 
        // vamos criar
        let newUser = userRepository.create({

@@ -15,7 +15,11 @@ let userController = new UserController()
 
 // rota de consulta
 // não tem o que tratar
-userRouter.get('/', isAuthenticated, userController.index) 
+userRouter.get('/', userController.index) 
+
+// rota de login
+// método get, chama o showUserService passando 2 parâmetros
+userRouter.get('/:email/:password', userController.show) 
 
 // trata o erro de exigir corpo da requsição
 userRouter.post('/', 

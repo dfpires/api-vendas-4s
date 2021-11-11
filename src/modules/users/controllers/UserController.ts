@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CreateUserService from "../services/CreateUserService";
+import ShowUserService from "../services/ShowUserService";
 import ListUserService from "../services/ListUserService";
 
 
@@ -30,4 +31,16 @@ export default class UserController {
         return response.json(users);
     }
 
+    // chama o ShowProductService
+    public async show (request: Request, response: Response): Promise<Response>{
+        // recupera o email e a senha fornecidos pelo usuário
+        let email = request.params['email']
+        let password = request.params['password']
+        // cria um showUserService
+        let showUserService = new ShowUserService()
+        // executa o execute do showUserService
+        let resposta = await showUserService.execute({email, password});
+        // retorna uma String
+        return response.json(resposta);
+    }
 }

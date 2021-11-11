@@ -9,6 +9,7 @@ import {errors} from 'celebrate'
 // vamos utilizar a classe AppError
 import AppError from '../../shared/errors/AppErrors'
 
+var cors = require('cors')
 
 // cria um servidor express
 let servidor = express();
@@ -18,9 +19,11 @@ import routes from './routes/routes'
 // servidor suporta converte dados do formulário para json
 servidor.use(express.json())
 
+servidor.use(cors())
 
 // associa as rotas ao servidor
 servidor.use(routes)
+
 
 // servidor vai poder tratar erro do cebrate
 servidor.use(errors())
